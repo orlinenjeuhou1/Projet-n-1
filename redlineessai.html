@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+  <header>
+    <h1> CE SITE EST STRICTEMENT INTERDIT AU MOINS DE 18 ANS DONC VEILLER ENTRER VOTRE DATE DE NAISSANCE</h1>
+  </header>
+  <!DOCTYPE html>
+  <html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire Date de Naissance</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+  
+    <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulaire Date de Naissance</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <label class="form-label">Entrez votre date de naissance :</label>
+    <div class="row">
+      <!-- Saisie du jour -->
+      <div class="col-1">
+        <label for="jour"><b>Jour</b></label>
+        <input type="number" placeholder="jour" name="jour" id="jour" min="1" max="31" class="form-control" required>
+      </div>
+
+      <!-- Sélection du mois -->
+      <div class="col-1">
+        <label for="month"><b>Mois</b></label>
+        <select id="month" class="form-select">
+          <option value="">Mois</option>
+          <option value="1">Janvier</option>
+          <option value="2">Février</option>
+          <option value="3">Mars</option>
+          <option value="4">Avril</option>
+          <option value="5">Mai</option>
+          <option value="6">Juin</option>
+          <option value="7">Juillet</option>
+          <option value="8">Août</option>
+          <option value="9">Septembre</option>
+          <option value="10">Octobre</option>
+          <option value="11">Novembre</option>
+          <option value="12">Décembre</option>
+        </select>
+      </div>
+
+      <!-- Saisie de l'année -->
+      <div class="col-1">
+        <label for="Année"><b>Année</b></label>
+        <input type="number" placeholder="année" min="1920" max="2025" name="Année" id="Année" class="form-control" required>
+      </div>
+    </div>
+    <button type="button" onclick="agecontrol()">Soumettre</button>
+  </div>
+
+  <!-- JS Script -->
+  <script>
+    // récupere les entrées du l'utilisateur
+    function agecontrol() {
+      const jour = document.getElementById("jour").value;
+      const mois = document.getElementById("month").value; // Utiliser 'month' ici
+      const Année = document.getElementById("Année").value;
+
+      // Vérifier si tous les champs sont remplis
+      if (jour === "" || mois === "" || Année === "") {
+        alert("Veuillez remplir tous les champs de la date de naissance.");
+        return;
+      }
+
+      // Convertir les valeurs en nombres car après la saisie les nombres deviennent des chaînes de caractères
+      const jourNum = parseInt(jour);
+      const moisNum = parseInt(mois);
+      const AnnéeNum = parseInt(Année);
+
+      // Créer un objet Date pour la date de naissance après la conversion, n'oubliez pas que janvier = 0
+      const dateNaissance = new Date(AnnéeNum, moisNum - 1, jourNum);
+
+      // Calculer l'âge à partir de la date de naissance
+      const aujourdHui = new Date();
+      let age = aujourdHui.getFullYear() - dateNaissance.getFullYear();
+
+
+      // Vérifier si l'âge est supérieur ou égal à 18
+      if (age < 18) {
+        window.location.href = "https://www.imdb.com";
+      } else {
+        // Si l'âge est supérieur ou égal à 18, ne rien faire (ou ajouter une action de bienvenue ici)
+        alert("Bienvenue sur notre site !");  
+        
+      }
+    }
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
