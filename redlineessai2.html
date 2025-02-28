@@ -28,6 +28,17 @@
       border: none;
       cursor: pointer;
     }
+     /* Jumbotron personnalisé */
+     .custom-jumbotron {
+            background-image: url('https://www.theforgemovie.com/images/share.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            position: relative;
+            display: none; /* Cachez le jumbotron au départ */
+     }
   </style>
 </head>
 <body>
@@ -60,6 +71,12 @@
       </div>
     </div>
   </div>
+  <div class="container mt-3">
+    <div class="custom-jumbotron" id="jumbotronSection">
+        <h1>LATEST ONLINE MOVIES</h1>
+        <p>IN SPACE ONE CAN HEAR YOU SCREAM</p>
+    </div>
+</div>
 
   <!-- Bouton pour ouvrir le modal Login -->
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
@@ -148,23 +165,39 @@
     Ce site utilise des cookies pour améliorer votre expérience. En continuant à naviguer, vous acceptez notre utilisation des cookies.
     <button onclick="acceptCookies()">Accepter</button>
   </div>
-  <!-- HOME -->
-  <li class="nav-item">
-    <a class="nav-link active" href="#">HOME</a>
-</li>
-
-<!-- Liste déroulante -->
-<li class="nav-item dropdown">
-    <button id="games-buton"class="btn btn-secondary dropdown-toggle same-size" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
-        GAMES
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Comedy</a></li>
-        <li><a class="dropdown-item" href="#">Western</a></li>
-        <li><a class="dropdown-item" href="#">Fiction</a></li>
-    </ul>
-</li>
+  <!-- Jumbotron avec tout le contenu (il est caché au départ) -->
+<div class="container mt-3">
+    <div class="custom-jumbotron" id="jumbotronSection">
+        <h1>LATEST ONLINE MOVIES</h1>
+        <p>IN SPACE ONE CAN HEAR YOU SCREAM</p>
+    </div>
+</div>
+ <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <!-- HOME -->
+      <a class="navbar-brand" href="#">HOME</a>
+  
+      <!-- Liste déroulante -->
+      <div class="nav-item dropdown ms-3">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          GAMES
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Comedy</a></li>
+          <li><a class="dropdown-item" href="#">Western</a></li>
+          <li><a class="dropdown-item" href="#">Fiction</a></li>
+        </ul>
+      </div>
+  
+      <!-- Boutons vides corrigés -->
+      <button class="btn btn-outline-primary ms-3"></button>
+      <button class="btn btn-outline-primary ms-3"></button>
+    </div>
+  </nav>
+  
+  
   <script>
     // Gestionnaire d'événement pour le bouton "Valider" Date de naissance
     document.getElementById("submitBtn").addEventListener("click", function () {
@@ -234,22 +267,12 @@
         return;
     }
 
-    // Inscription réussie, vous pouvez ajouter un message ou toute autre action ici
-    console.log("Inscription réussie !");
-
     // Fermer le modal d'inscription après soumission
     var modal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
     modal.hide();
 });
 
-  
 
-
-    // Fonction pour accepter les cookies
-    function acceptCookies() {
-      document.cookie = "cookiesAccepted=true; path=/; max-age=" + 60 * 60 * 24 * 30;
-      document.getElementById("cookieConsentBox").style.display = "none";
-    }
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
