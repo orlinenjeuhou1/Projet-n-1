@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal Date de Naissance</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Style pour la boîte de consentement aux cookies */
+    #cookieConsentBox {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #f1f1f1;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      display: none; /* Cachée par défaut */
+    }
+
+    #cookieConsentBox button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Bouton pour ouvrir le modal Date de naissance -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#birthDateModal">
+    Veuillez renseigner votre Date de Naissance
+  </button>
+
+  <!-- Modal Date de naissance -->
+  <div class="modal fade" id="birthDateModal" tabindex="-1" aria-labelledby="birthDateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="birthDateModalLabel">Sélectionner votre Date de Naissance</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="birthDateForm">
+            <div class="mb-3">
+              <label for="birthDate" class="form-label">Date de naissance</label>
+              <input type="date" class="form-control" id="birthDate" required>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary" id="submitBtn">Valider</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bouton pour ouvrir le modal Login -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+    LOGIN
+  </button>
+
+  <!-- Modal Login -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Connexion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulaire de connexion -->
+          <form id="loginForm">
+            <div class="mb-3">
+              <label for="username" class="form-label">Identifiant</label>
+              <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Mot de passe</label>
+              <input type="password" class="form-control" id="password" required>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="rememberMe">
+              <label class="form-check-label" for="rememberMe">Rester connecté</label>
+            </div>
+            <a href="#" class="text-decoration-none">Mot de passe oublié ?</a>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary" id="loginBtn">Se connecter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Register -->
+  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#registerModal">
+    REGISTER
+  </button>
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Inscription</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulaire d'inscription -->
+          <form id="registerForm">
+            <div class="mb-3">
+              <label for="usernameRegister" class="form-label">Nom</label>
+              <input type="text" class="form-control" id="usernameRegister" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Courrier</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="passwordRegister" class="form-label">Mot de passe</label>
+              <input type="password" class="form-control" id="passwordRegister" required>
+            </div>
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirmer le mot de passe</label>
+              <input type="password" class="form-control" id="confirmPassword" required>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="terms">
+              <label class="form-check-label" for="terms">Select</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" id="registerBtn">S'inscrire</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Boîte de consentement aux cookies -->
+  <div id="cookieConsentBox">
+    Ce site utilise des cookies pour améliorer votre expérience. En continuant à naviguer, vous acceptez notre utilisation des cookies.
+    <button onclick="acceptCookies()">Accepter</button>
+  </div>
+  <!-- HOME -->
+  <li class="nav-item">
+    <a class="nav-link active" href="#">HOME</a>
+</li>
+
+<!-- Liste déroulante -->
+<li class="nav-item dropdown">
+    <button id="games-buton"class="btn btn-secondary dropdown-toggle same-size" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
+        GAMES
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Comedy</a></li>
+        <li><a class="dropdown-item" href="#">Western</a></li>
+        <li><a class="dropdown-item" href="#">Fiction</a></li>
+    </ul>
+</li>
+  <script>
+    // Gestionnaire d'événement pour le bouton "Valider" Date de naissance
+    document.getElementById("submitBtn").addEventListener("click", function () {
+      const birthDateInput = document.getElementById("birthDate");
+      const birthDate = new Date(birthDateInput.value);
+
+      if (isNaN(birthDate.getTime())) {
+        alert("Veuillez entrer une date de naissance valide.");
+        return;
+      }
+
+      const aujourdHui = new Date();
+      let age = aujourdHui.getFullYear() - birthDate.getFullYear();
+      const mois = aujourdHui.getMonth() - birthDate.getMonth();
+      const jour = aujourdHui.getDate() - birthDate.getDate();
+
+      if (mois < 0 || (mois === 0 && jour < 0)) {
+        age--;
+      }
+
+      if (age < 18) {
+        alert("Vous êtes mineur. Redirection vers IMDb.");
+        window.location.href = "https://www.imdb.com";
+      } else {
+        alert("Bienvenue sur le site !");
+        document.getElementById("cookieConsentBox").style.display = "block";
+      }
+
+      // Fermer le modal de la date de naissance après validation
+      $('#birthDateModal').modal('hide');
+    });
+
+    // Gestionnaire d'événement pour le bouton "Se connecter"
+    document.getElementById("loginBtn").addEventListener("click", function () {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === "" || password === "") {
+        alert("Veuillez remplir tous les champs.");
+        return;
+      }
+
+      if (username === "admin" && password === "1234") {
+        alert("Connexion réussie !");
+        window.location.href = "page-securisee.html";
+      } else {
+        alert("Identifiant ou mot de passe incorrect.");
+      }
+
+      // Fermer le modal de connexion après soumission
+      $('#loginModal').modal('hide');
+    });
+
+      // Gestionnaire d'événement pour l'inscription
+    document.getElementById("registerBtn").addEventListener("click", function () {
+    const usernameRegister = document.getElementById("usernameRegister").value;
+    const passwordRegister = document.getElementById("passwordRegister").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (usernameRegister === "" || passwordRegister === "" || confirmPassword === "") {
+        alert("Veuillez remplir tous les champs.");
+        return;
+    }
+
+    if (passwordRegister !== confirmPassword) {
+        alert("Les mots de passe ne correspondent pas.");
+        return;
+    }
+
+    // Inscription réussie, vous pouvez ajouter un message ou toute autre action ici
+    console.log("Inscription réussie !");
+
+    // Fermer le modal d'inscription après soumission
+    var modal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
+    modal.hide();
+});
+
+  
+
+
+    // Fonction pour accepter les cookies
+    function acceptCookies() {
+      document.cookie = "cookiesAccepted=true; path=/; max-age=" + 60 * 60 * 24 * 30;
+      document.getElementById("cookieConsentBox").style.display = "none";
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
+
