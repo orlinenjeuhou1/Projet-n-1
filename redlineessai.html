@@ -1,114 +1,379 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Lien pour Bootstrap (mise en page, composants, etc.) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-<body>
-  <header>
-    <h1> CE SITE EST STRICTEMENT INTERDIT AU MOINS DE 18 ANS DONC VEILLER ENTRER VOTRE DATE DE NAISSANCE</h1>
-  </header>
-  <!DOCTYPE html>
-  <html lang="fr">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire Date de Naissance</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  </head>
-  <body>
-  
-    <!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulaire Date de Naissance</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+    <style>
+    .games-button {
+        background-color: red !important;  /* Fond rouge */
+        color: white !important;  /* Texte blanc */
+        border: none;  /* Pour supprimer la bordure si nécessaire */
+    }
+</style>
+    <!-- Lien mis à jour pour Font Awesome (icônes) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* Style pour la navbar */
+        .navbar-custom {
+            background-color: #333;
+        }
 
-  <div class="container">
+        .navbar-custom .navbar-nav .nav-link {
+            color: white;
+        }
+
+        .navbar-custom .navbar-nav .nav-link:hover {
+            color: #f1f1f1;
+        }
+
+        /* Style pour la boîte de consentement aux cookies */
+        #cookieConsentBox {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            z-index: 1000;
+            display: none; /* La boîte est cachée au départ */
+        }
+        #cookieConsentBox button {
+            background-color: #f1f1f1;
+            color: #333;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        #cookieConsentBox button:hover {
+            background-color: #ddd;
+        }
+
+        /* Formulaire de login dans un cadre */
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border: 2px solid #333; /* Bordure autour du formulaire */
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            width: 300px; /* Largeur du formulaire */
+            margin: auto;
+        }
+
+        .login-container label,
+        .login-container input {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        /* Jumbotron personnalisé */
+        .custom-jumbotron {
+            background-image: url('https://www.theforgemovie.com/images/share.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            position: relative;
+            display: none; /* Cachez le jumbotron au départ */
+        }
+        
+        /* Style pour les boutons avec animation */
+        .btn-animate {
+            width: 150px; /* Largeur par défaut */
+            font-size: 16px; /* Taille de police par défaut */
+            transition: all 0.5s ease; /* Animation de la largeur et de la taille du texte */
+            transform: scale(1); /* Valeur initiale pour le transform */
+        }
+
+        .btn-animate.active {
+            width: 5000px; /* Largeur à atteindre lors du clic */
+            font-size: 2000px; /* Taille de police plus grande */
+            transform: scale(10.1); /* Agrandissement de 10% */
+        }
+
+        /* Style pour la position des icônes sociales en bas à gauche */
+        .social-icons {
+            position: absolute;
+            bottom: 0.1px;
+            left: 10px;
+            display: flex;
+            gap: 0.1px;
+            flex-direction: column;
+        }
+
+        /* Icônes sociales - Font Awesome */
+        .social-icons a {
+            padding: 2px;
+            font-size: 10px;
+            width: 50px;
+            text-align: center;
+            text-decoration: none;
+            margin: 5px 2px;
+            border-radius: 50%;
+            transition: width 20ms ease, font-size 20ms ease; /* Animation d'agrandissement */
+        }
+
+        /* Couleurs spécifiques pour chaque réseau */
+        .social-icons a.fa-twitter {
+            background: #55ACEE;
+            color: white;
+        }
+
+        .social-icons a.fa-facebook {
+            background: #3B5998;
+            color: white;
+        }
+
+        .social-icons a.fa-instagram {
+            background: pink;
+            color: white;
+        }
+
+        .social-icons a.fa-google {
+            background: red;
+            color: white;
+        }
+
+        /* Animation au survol : agrandissement */
+        .social-icons a:active {
+            width: 70px; /* Agrandir la taille du bouton */
+            font-size: 40px; /* Agrandir la taille du logo */
+            transform: scaleX(1.5); /* Agrandissement uniquement horizontal */
+            transform-origin: left center; /* Développe vers la droite */
+        }
+
+        /* Effet au survol */
+        .social-icons a:hover {
+            opacity: 0.7;
+        }
+       
+        /* Styles pour donner la même taille aux boutons et carrés */
+        .same-size {
+            width: 70px;  /* Largeur du carré */
+            height: 40px; /* Hauteur du carré */
+            padding: 0;
+            border-radius: 5px; /* Optionnel pour arrondir un peu */
+        }
+        .nav-link.active {
+       color: red !important;
+          }
+     
+    
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Mon Site</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- HOME -->
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">HOME</a>
+                    </li>
+    
+                    <!-- Liste déroulante -->
+                    <li class="nav-item dropdown">
+                        <button id="games-buton"class="btn btn-secondary dropdown-toggle same-size" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
+                            GAMES
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Comedy</a></li>
+                            <li><a class="dropdown-item" href="#">Western</a></li>
+                            <li><a class="dropdown-item" href="#">Fiction</a></li>
+                        </ul>
+                    </li>
+    
+                    <!-- Carré vide 1 -->
+                    <li class="nav-item">
+                        <button class="btn btn-secondary same-size"></button>
+                    </li>
+    
+                    <!-- Carré vide 2 -->
+                    <li class="nav-item">
+                        <button class="btn btn-secondary same-size"></button>
+                    </li>
+                    <!-- Carré vide 3 -->
+                    <li class="nav-item">
+                        <button class="btn btn-secondary same-size"></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+   
+    
+    
+
+<!-- Section de saisie de la date de naissance (apparaît en premier) -->
+<div class="container mt-3" id="ageSection">
     <label class="form-label">Entrez votre date de naissance :</label>
     <div class="row">
-      <!-- Saisie du jour -->
-      <div class="col-1">
-        <label for="jour"><b>Jour</b></label>
-        <input type="number" placeholder="jour" name="jour" id="jour" min="1" max="31" class="form-control" required>
-      </div>
+        <!-- Saisie du jour -->
+        <div class="col-1">
+            <label for="jour"><b>Jour</b></label>
+            <input type="number" placeholder="jour" name="jour" id="jour" min="1" max="31" class="form-control" required>
+        </div>
 
-      <!-- Sélection du mois -->
-      <div class="col-1">
-        <label for="month"><b>Mois</b></label>
-        <select id="month" class="form-select">
-          <option value="">Mois</option>
-          <option value="1">Janvier</option>
-          <option value="2">Février</option>
-          <option value="3">Mars</option>
-          <option value="4">Avril</option>
-          <option value="5">Mai</option>
-          <option value="6">Juin</option>
-          <option value="7">Juillet</option>
-          <option value="8">Août</option>
-          <option value="9">Septembre</option>
-          <option value="10">Octobre</option>
-          <option value="11">Novembre</option>
-          <option value="12">Décembre</option>
-        </select>
-      </div>
+        <!-- Sélection du mois -->
+        <div class="col-1">
+            <label for="month"><b>Mois</b></label>
+            <select id="month" class="form-select">
+                <option value="">Mois</option>
+                <option value="1">Janvier</option>
+                <option value="2">Février</option>
+                <option value="3">Mars</option>
+                <option value="4">Avril</option>
+                <option value="5">Mai</option>
+                <option value="6">Juin</option>
+                <option value="7">Juillet</option>
+                <option value="8">Août</option>
+                <option value="9">Septembre</option>
+                <option value="10">Octobre</option>
+                <option value="11">Novembre</option>
+                <option value="12">Décembre</option>
+            </select>
+        </div>
 
-      <!-- Saisie de l'année -->
-      <div class="col-1">
-        <label for="Année"><b>Année</b></label>
-        <input type="number" placeholder="année" min="1920" max="2025" name="Année" id="Année" class="form-control" required>
-      </div>
+        <!-- Saisie de l'année -->
+        <div class="col-1">
+            <label for="Année"><b>Année</b></label>
+            <input type="number" placeholder="année" min="1920" max="2025" name="Année" id="Année" class="form-control" required>
+        </div>
     </div>
-    <button type="button" onclick="agecontrol()">Soumettre</button>
+    <button type="button" onclick="checkAge()">Soumettre</button>
+</div>
+
+<!-- Jumbotron avec tout le contenu (il est caché au départ) -->
+<div class="container mt-3">
+    <div class="custom-jumbotron" id="jumbotronSection">
+        <h1>LATEST ONLINE MOVIES</h1>
+        <p>IN SPACE ONE CAN HEAR YOU SCREAM</p>
+    </div>
+</div>
+
+<!-- Boîte de consentement aux cookies -->
+<div id="cookieConsentBox">
+    Ce site utilise des cookies pour améliorer votre expérience. En continuant à naviguer, vous acceptez notre utilisation des cookies.
+    <button onclick="acceptCookies()">Accepter</button>
+</div>
+
+<!-- Modal pour login -->
+<button onclick="document.getElementById('id01').style.display='block'">Login</button>
+
+<!-- The Modal -->
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+  <div class="login-container">
+      <label for=""><b>Identifiant</b></label>
+      <input type="text" placeholder="Enter id" name="" required>
+
+      <label for=""><b>Mot de passe</b></label>
+      <input type="password" placeholder="Mot de passe" name="" required>
+      <button type="submit">OK</button>
+      <button type="submit">Créer un compte</button>
+      <button type="submit">Rester</button>
+      <button type="button" onclick="cancelLogin()">Cancel</button>
+      <a href="mot-de-passe-oublie.html">Mot de passe oublié ?</a>
   </div>
+</div>
 
-  <!-- JS Script -->
-  <script>
-    // récupere les entrées du l'utilisateur
-    function agecontrol() {
-      const jour = document.getElementById("jour").value;
-      const mois = document.getElementById("month").value; // Utiliser 'month' ici
-      const Année = document.getElementById("Année").value;
+<!-- Icônes sociales en bas à gauche -->
+<div class="social-icons">
+    <a href="#" class="fa fa-twitter" title="Twitter"></a>
+    <a href="#" class="fa fa-facebook" title="Facebook"></a>
+    <a href="#" class="fa fa-instagram" title="Instagram"></a>
+    <a href="#" class="fa fa-google" title="Google"></a>
+</div>
 
-      // Vérifier si tous les champs sont remplis
-      if (jour === "" || mois === "" || Année === "") {
-        alert("Veuillez remplir tous les champs de la date de naissance.");
-        return;
-      }
+<!-- JS Script -->
+<script>
+    // Récupérer les valeurs des champs de saisie et les convertir en entiers
+    function checkAge() {
+        const jour = parseInt(document.getElementById("jour").value);
+        const mois = parseInt(document.getElementById("month").value);
+        const année = parseInt(document.getElementById("Année").value);
 
-      // Convertir les valeurs en nombres car après la saisie les nombres deviennent des chaînes de caractères
-      const jourNum = parseInt(jour);
-      const moisNum = parseInt(mois);
-      const AnnéeNum = parseInt(Année);
+        const today = new Date();
+        const birthDate = new Date(année, mois - 1, jour); // mois est de 0 à 11, donc mois - 1
 
-      // Créer un objet Date pour la date de naissance après la conversion, n'oubliez pas que janvier = 0
-      const dateNaissance = new Date(AnnéeNum, moisNum - 1, jourNum);
-
-      // Calculer l'âge à partir de la date de naissance
-      const aujourdHui = new Date();
-      let age = aujourdHui.getFullYear() - dateNaissance.getFullYear();
-
-
-      // Vérifier si l'âge est supérieur ou égal à 18
-      if (age < 18) {
-        window.location.href = "https://www.imdb.com";
-      } else {
-        // Si l'âge est supérieur ou égal à 18, ne rien faire (ou ajouter une action de bienvenue ici)
-        alert("Bienvenue sur notre site !");  
+        const age = today.getFullYear() - birthDate.getFullYear();
         
-      }
+        // Si l'utilisateur a moins de 18 ans, redirigez vers IMDB
+        if (age < 18) {
+            window.location.href = "https://www.imdb.com";
+        } else {
+            // Masque la section de la date de naissance et affiche le jumbotron
+            document.getElementById("ageSection").style.display = "none";
+            document.getElementById("jumbotronSection").style.display = "block";
+            alert("Bienvenue sur le site !");
+            // Afficher la boîte de consentement aux cookies après validation de l'âge
+            document.getElementById("cookieConsentBox").style.display = "block";
+        }
     }
-  </script>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    // Fonction pour accepter les cookies
+    function acceptCookies() {
+        // Créer un cookie pour enregistrer l'acceptation
+        document.cookie = "cookiesAccepted=true; path=/; max-age=" + 60*60*24*30; // Cookie expirant dans 30 jours
+        document.getElementById("cookieConsentBox").style.display = "none";
+    }
+
+    // Vérifier si le cookie des cookies a été accepté
+    function checkCookieConsent() {
+        const cookiesAccepted = document.cookie.indexOf("cookiesAccepted=true") !== -1;
+        if (!cookiesAccepted) {
+            document.getElementById("cookieConsentBox").style.display = "none"; // cacher par défaut
+        }
+    }
+
+    // Vérification du consentement aux cookies au chargement de la page
+    window.onload = checkCookieConsent;
+
+    // Fonction pour fermer la boîte de login
+    function cancelLogin() {
+        document.getElementById('id01').style.display = 'none';
+    }
+</script>
+
+<!-- JS pour Bootstrap -->
+<!-- JS pour Bootstrap (avec Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
